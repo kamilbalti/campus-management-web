@@ -1,0 +1,167 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* width: 40vw; */
+  /* height: 50vh; */
+  padding: 30px;
+  border: 3px solid black;
+  border-radius: 40px;
+}
+
+.border {
+  border: 2px solid black;
+}
+
+.btn {
+  background: white !important;
+  color: black !important;
+  font-size: 18px !important;
+  padding: 15px !important;
+  width: 90% !important;
+  margin: 10px !important;
+  border: 1px solid black !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.dropdown-menu {
+  width: 90% !important;
+  font-size: 18px !important;
+}
+
+/* .column1 { */
+/* height: 65vh; */
+/* } */
+
+.fullWidth {
+  width: 100% !important;
+}
+
+.form {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.form1 {
+  background-image: url("./login\ background.png");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  /* z-index: 20; */
+}
+
+.form2 {
+  background-image: url("./signup\ background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.column1 {
+  background-color: rgb(134, 172, 241);
+}
+.column2 {
+  background-color: rgb(255, 223, 210);
+}
+
+.but1 {
+  border: 2px solid black;
+  border-radius: 90px;
+  padding: 8px;
+  background-color: rgb(31, 173, 255);
+}
+
+.but2 {
+  border: 2px solid black;
+  border-radius: 90px;
+  padding: 8px;
+  background-color: rgb(255, 109, 109);
+}
+
+.formHeading {
+  color: blue;
+  word-spacing: 5px;
+}
+
+.back {
+  display: flex;
+  border: 2px solid black;
+  border-radius: 100px;
+  width: 35px;
+  height: 35px;
+  margin-right: 20px;
+}
+
+.backDiv {
+  display: flex;
+  align-items: center;
+}
+
+.select {
+  cursor: pointer;
+}
+
+/* .on {
+  background-color: rgb(68, 68, 68);
+  color: white;
+  font-size: 16px;
+  width: 10vw;
+  padding: 10px;
+} */
+
+.input {
+  background-color: white;
+  font-size: 18px;
+  padding: 15px;
+  width: 90%;
+  margin: 10px;
+}
+
+.heading {
+  font-size: 38px;
+  color: brown;
+  font-weight: bold;
+}
+
+.button {
+  cursor: pointer;
+  /* border: none; */
+  /* background-color: white; */
+  width: 50%;
+}
+
+.pic {
+  width: 110%;
+}
+
+.para {
+  padding-top: 13px;
+}
+
+@media only screen and (max-width: 700px) {
+  .column {
+    padding: 10px;
+    /* width: 65%; */
+  }
+  .column1 {
+    /* height: 60vh; */
+    /* margin-bottom: 20%; */
+  }
+  .button {
+    margin-top: 10px;
+    /* width: 70%; */
+  }
+  .input {
+    /* border: none;   */
+    /* margin: 5px; */
+    padding: 5px;
+  }
+  .btn {
+    padding: 5px !important;
+  }
+}
