@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import firebase from "./Firebase/Firebase";
-import { setUser } from "../redux/Action";
+import { setUser, setUserDetail } from "../redux/Action";
 // import back from "./back.png";
 import DropdownOptions from "./dropdown";
 
@@ -15,28 +15,29 @@ const SignUp = () => {
   const { user, status } = useSelector((state) => state);
   const [error, setError] = useState(false);
   // const [status, setStatus] = useState(false);
-  let userDetail;
+  let userDetail2;
   const createAccount = () => {
-    userDetail = {
+    userDetail2 = {
       email: email,
       userName: userName,
       password: password,
-      status: status,
+      // status: status,
     };
-    user?.status && setError("The status should be selected");
-    !error &&
+    dispatch(setUserDetail(userDetail2))
+    // !(userDetail?.status) && setError("The status should be selected");
+    // !error &&
       status &&
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then((res) => {
-          userDetail.userId = res?.user?.uid;
+          userDetail2.userId = res?.user?.uid;
           firebase
             .database()
             .ref(`User/${res?.user?.uid}`)
             .set({
-              userDetail: userDetail || {},
-              userData: [],
+              userDetail: userDetail2 || {},
+              status: status,
             })
             .then(() => {
               dispatch(setUser(res?.user));

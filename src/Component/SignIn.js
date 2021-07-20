@@ -10,17 +10,22 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { allStatus, status } = useSelector((state) => state);
+  const { allStatus, status, signInStatus } = useSelector((state) => state);
 
   // const [userName, setUserName] = useState("");
   // const [status, setStatus] = useState(false);
   // const statusArr = ["student", "company", "admin"];
 
   const logIn = () => {
+    signInStatus &&
+    alert("hi")
     firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((res) => {
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then((res) => {
+        firebase.database().ref(res?.user?.uid).on("value", (res) => {
+          res?.val()?.userDetail?.filter((item, index) => email === item.email && signInStatus === item?.status)
+        })
         dispatch(setUser(res?.user));
       });
   };

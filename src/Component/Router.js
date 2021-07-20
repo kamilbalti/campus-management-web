@@ -4,7 +4,7 @@ import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../redux/Action";
+import { setStatus, setUser } from "../redux/Action";
 import { Spinner } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Pages from "./pages";
@@ -17,6 +17,10 @@ const Router1 = () => {
       dispatch(setUser(isUser));
     });
   }, []);
+  useEffect(() => {
+    !user &&
+    dispatch(setStatus(false)) 
+  },[user])
   return (
     <Router>
       <Switch>
