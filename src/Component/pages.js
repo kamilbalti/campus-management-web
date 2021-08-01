@@ -1,5 +1,6 @@
+import { Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { setStatus, setUser } from "../redux/Action";
+import { setStatus, setUser, setUserArr } from "../redux/Action";
 import AdminPage from "./AdminPage";
 import CompanyPage from "./CompanyPage";
 import StudentPage from "./StudentPage";
@@ -8,41 +9,42 @@ import { useEffect } from "react";
 
 const Pages = () => {
   const dispatch = useDispatch();
-  const { status, user } = useSelector((state) => state);
-  let check = false;
-  const logOut = () => {
-    firebase.auth().signOut();
-    dispatch(setUser(false));
-  };
-  useEffect(() => {
-    firebase.database().ref(`User/${user?.uid}`).update({
-      status: status
-    })
-    .then(() => {
-      firebase.database().ref(`User/${user?.uid}`).on("value", (res) => {
-        dispatch(setStatus(res?.val().status))
-      })
-    })
-  }, [user])
+  const { status, user, userArr } = useSelector((state) => state);
 
-    // useEffect(() => {
-    //   status !== "" &&
-    // },[])
+    useEffect(() => {
+      // firebase.database().ref("User/").on("value", (res) => {
+      //   console.log(res?.val()?.userArr, "ka")
+      //   dispatch(setUserArr(res?.val()?.userArr))
+      // })
+      firebase.database().ref(`User/${user?.uid}`).on("value", (res) => {
+        let user2 = user;
+        user2.status = res?.val()?.userDetail?.status
+        dispatch(setUser(user2))
+        dispatch(setStatus( !status && res?.val()?.userDetail?.status))
+        // console.log(res?.val()?.userDetail, "check")
+        // console.log(status, "status")
+      })
+    }, [])
+    useEffect(() => {
+      // console.log(userArr, "allUser")
+      // let user2 = user;
+      // user2.status = status;
+      // dispatch(setUser(user2))
+    },[])
 
   return (
     <div>
-      {status === "Admin" ? (
+      {user?.status === "Admin" ? (
         <AdminPage />
-      ) : status === "Company" ? (
+      ) : user?.status === "Company" ? (
         <CompanyPage />
-      ) : status === "Student" ? (
+      ) : user?.status === "Student" ? (
         <StudentPage />
-      ) : (
-        <button className='button2 button4' onClick={() => logOut()}>
-          Sign Out
-        </button>
+        ) : (
+        <Spinner animation='border' variant='secondary' />
       )}
     </div>
   );
 };
 export default Pages;
+  

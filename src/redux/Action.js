@@ -1,7 +1,12 @@
-import { SET_SIGNIN_STATUS, SET_STATUS, SET_USER, SET_USERDETAIL } from "./ActionType";
+import { SET_SIGNIN_STATUS, SET_STATUS, SET_USER, SET_USERDETAIL, SET_USER_ARR } from "./ActionType";
 
 export const setUser = (payload) => ({
   type: SET_USER,
+  payload,
+});
+
+export const setUserArr = (payload) => ({
+  type: SET_USER_ARR,
   payload,
 });
 

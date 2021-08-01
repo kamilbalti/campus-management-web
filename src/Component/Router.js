@@ -10,10 +10,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Pages from "./pages";
 const Router1 = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state);
+  const { user, status } = useSelector((state) => state);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((isUser) => {
+      // let user2 = isUser
+      // user2.status = status && status
       dispatch(setUser(isUser));
     });
   }, []);

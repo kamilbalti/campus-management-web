@@ -1,0 +1,74 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.AdminPageMainDiv{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+    /* background-color: red; */
+}
+.AdminPageDiv1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    border: 3px solid black;
+    /* border-top: 0; */
+    /* margin-top: auto */
+    justify-content: center;
+}
+.box{
+    margin-bottom: 100px;
+    width: 100%;
+    border-top: 3px solid black;
+    /* margin-top: 20%; */
+    /* border-right: none; */
+    /* border-left: none; */
+    /* padding: 0; */
+    /* margin: 0; */
+}
+.AdminPageDiv2{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+.AdminPageSelect{
+    padding: 20px 0;
+    border-bottom: 3px solid black;
+    cursor: pointer;
+    letter-spacing: 5px;
+    word-spacing: 5px;
+}
+.firstScreen{
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: red;
+}
+.mb-2{
+    color: white;
+    padding-left: 20px;
+    height: 72px;
+    font-size: 20px;
+    letter-spacing: 4px;
+    margin: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    /* justify-content: flex-start; */
+}
+.userPara{
+    /* font-size: 10px; */
+    margin-bottom: 0;
+}
+.uid{
+    /* padding-left: 10px; */
+    font-size: 16px;
+}
