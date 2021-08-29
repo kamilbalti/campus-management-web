@@ -10,18 +10,21 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const { allStatus, status, signInStatus } = useSelector((state) => state);
 
-
   const logIn = () => {
     firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then((res) => {
-        firebase.database().ref(`User/${res?.user?.uid}`).on("value", (res1) => {
-          let user2 = res?.user
-          // console.log(res1.val(), "abc")
-          user2.status = res1.val()?.userDetail?.status
-          dispatch(setUser(user2));
-        })
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((res) => {
+        firebase
+          .database()
+          .ref(`User/${res?.user?.uid}`)
+          .on("value", (res1) => {
+            let user2 = res?.user;
+            // console.log(res1.val(), "abc")
+            user2.status = res1.val()?.userDetail?.status;
+            user2.userName = res1.val()?.userDetail?.userName;
+            dispatch(setUser(user2));
+          });
       });
   };
   const submit = (e) => {
@@ -29,28 +32,28 @@ const SignIn = () => {
     logIn();
   };
   return (
-    <form className='form form1' onSubmit={submit}>
-      <div className='column column1'>
-        <h1 className='heading'>LOGIN</h1>
+    <form className="form form1" onSubmit={submit}>
+      <div className="column column1">
+        <h1 className="heading">LOGIN</h1>
         <input
-          className='input'
-          type='text'
-          placeholder='Email Id'
+          className="input"
+          type="text"
+          placeholder="Email Id"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          className='input'
-          type='password'
-          placeholder='Password'
+          className="input"
+          type="password"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className='but1 button column1' type='submit'>
+        <button className="but1 button column1" type="submit">
           LOGIN
         </button>
-        <p className='para'>
-          Do not have an Account? <a href='/signUp'>Create one</a>
+        <p className="para">
+          Do not have an Account? <a href="/signUp">Create one</a>
         </p>
       </div>
     </form>

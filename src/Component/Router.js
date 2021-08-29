@@ -10,19 +10,24 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Pages from "./pages";
 const Router1 = () => {
   const dispatch = useDispatch();
-  const { user, status } = useSelector((state) => state);
+  const { user, status, userName } = useSelector((state) => state);
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((isUser) => {
-      // let user2 = isUser
-      // user2.status = status && status
-      dispatch(setUser(isUser));
-    });
+    (user &&
+      user !== "loading" &&
+      firebase.auth().onAuthStateChanged((isUser) => {
+        let user2 = isUser;
+        user2.status = status && status;
+        user2.userName = userName && userName;
+        dispatch(setUser(user2));
+      })) ||
+      firebase.auth().onAuthStateChanged((isUser) => {
+        dispatch(setUser(isUser));
+      });
   }, []);
   useEffect(() => {
-    !user &&
-    dispatch(setStatus(false)) 
-  },[user])
+    !user && dispatch(setStatus(false));
+  }, [user]);
   return (
     <Router>
       <Switch>
@@ -30,8 +35,8 @@ const Router1 = () => {
           <Route exact path={"/"} component={Pages} />
         )) ||
           (user === "loading" && (
-            <div className='spinner'>
-              <Spinner animation='border' variant='secondary' />
+            <div className="spinner">
+              <Spinner animation="border" variant="secondary" />
             </div>
           ))}
         <Route exact path={"/"} component={SignIn} />

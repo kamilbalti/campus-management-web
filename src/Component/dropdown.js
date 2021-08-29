@@ -7,23 +7,26 @@ const DropdownOptions = ({ signup, login }) => {
   const dispatch = useDispatch();
   const { status } = useSelector((state) => state);
   // const allStatus = ["Student", "Company", "Admin"];
-  let tempStatus = ["Student", "Company", "Admin"];
+  let tempStatus = ["Student", "Company"];
   const changingStatus = (index) => {
     // alert(index);
-    (signup && dispatch(setStatus(tempStatus[index])))
+    signup && dispatch(setStatus(tempStatus[index]));
     //  ||  (login && dispatch(setStatus(allStatus[index])));
-      
   };
 
   return (
-    <div className='fullWidth'>
-      <DropdownButton className='fullWidth select' title={!status ? "Status" : status}>
-        {(signup &&
-          tempStatus.map((item, index) => (
-            <Dropdown.Item key={index} onClick={() => changingStatus(index)}>
-              {item}
-            </Dropdown.Item>
-          )))
+    <div className="fullWidth">
+      <DropdownButton
+        className="fullWidth select"
+        title={!status ? "Status" : status}
+      >
+        {
+          signup &&
+            tempStatus.map((item, index) => (
+              <Dropdown.Item key={index} onClick={() => changingStatus(index)}>
+                {item}
+              </Dropdown.Item>
+            ))
           // (login &&
           //  ||
           //   allStatus.map((item, index) => (
